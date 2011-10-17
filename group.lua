@@ -2,7 +2,7 @@
 module(..., package.seeall);
 
 local function generate_symmetric_group(p, n)
-    if n == 0 then
+    if n <= 1 then
         coroutine.yield(p)
     else
         for i=1,n do    
@@ -24,9 +24,6 @@ local function gen_sym(n)
 end
 
 function sym_group_iterator (n)    
-    local co = coroutine.create(function () gen_sym(n) end)
-    return function ()   -- iterator
-        local code, res = coroutine.resume(co)
-        return res
-    end
+    return coroutine.wrap(function () gen_sym(n) end)
 end
+
