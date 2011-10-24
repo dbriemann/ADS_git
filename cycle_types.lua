@@ -40,7 +40,6 @@ function create_permutation(ct)
     local current = 0
     
     for len,amount in ipairs(ct) do
-        --utils.printf("len: " .. len .. " amount: " .. amount .. "\n")
         for i=1,amount do 
             local start = current
             for j=1,len-1 do

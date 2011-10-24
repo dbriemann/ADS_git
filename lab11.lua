@@ -26,4 +26,5 @@ print()
 print("invert(p1) -->")
 perm.print_cycles(perm.invert_permutation(p1))
 
-
+--TODO inverse und mult.
+-- assoziativ
