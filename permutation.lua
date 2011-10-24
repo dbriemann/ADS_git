@@ -1,7 +1,7 @@
 
 module(..., package.seeall);
 
---require "utils"
+require "utils"
 
 function mult_permutations(p1, p2)
     local result = {}
