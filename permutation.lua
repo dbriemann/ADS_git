@@ -2,6 +2,7 @@
 module(..., package.seeall);
 
 require "utils"
+require "math"
 
 function mult_permutations(p1, p2)
     local result = {}
@@ -17,6 +18,30 @@ function invert_permutation(p)
         result[v+1] = i - 1
     end
     return result
+end
+
+function count_cycles(p)
+    local visited = {}
+    local result = 0
+    
+    for i=1, #p do
+        local pos = i
+        local check = false
+        while not visited[pos] do
+            check = true
+            visited[pos] = true
+            pos = p[pos] + 1            
+        end
+        if check then result = result + 1 end
+    end
+    
+    return result
+end
+
+function signum(p)
+    local cycles = count_cycles(p)
+    local exponent = #p - cycles
+    return math.pow(-1, exponent)
 end
 
 function print_cycles(p)
