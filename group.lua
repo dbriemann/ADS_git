@@ -30,29 +30,7 @@ function sym_group_iterator (n)
     return coroutine.wrap(function () gen_sym(n) end)
 end
 
-function gen_dieder_group(n, pi, rho)
-    local result = {}
-    local pis = {pi}
-    local rhos = {rho}
-    
-    --add pis
-    for i=2, n do
-        table.insert(pis, perm.mult_permutations(pis[1], pis[i-1]))
-        table.insert(rhos, perm.mult_permutations(rhos[1], pis[i-1]))
-    end
-    
-    for i=1, n do
-        table.insert(result, pis[i])
-    end
-    
-    for i=1, n do
-        table.insert(result, rhos[i])
-    end
-    
-    return result
-end
-
-function gen_cube_group(generators)
+function gen_group(generators)
     local result = {}
     local new_element = false
     
