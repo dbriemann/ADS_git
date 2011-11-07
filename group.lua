@@ -1,5 +1,6 @@
 
 local perm = require "permutation"
+local utils = require "utils"
 
 module(..., package.seeall);
 
@@ -47,6 +48,33 @@ function gen_dieder_group(n, pi, rho)
     for i=1, n do
         table.insert(result, rhos[i])
     end
+    
+    return result
+end
+
+function gen_cube_group(generators)
+    local result = {}
+    local new_element = false
+    
+    for i=1, #generators do
+        local g = generators[i]
+        result[perm.to_string(g)] = g
+    end
+    
+    repeat
+        local tmp = utils.deepcopy(result)
+        new_element = false
+        for h1, g1 in pairs(tmp) do
+            for h2, g2 in pairs(tmp) do
+                local mult = perm.mult_permutations(g1, g2)
+                local hash = perm.to_string(mult)
+                if result[hash] == nil then
+                    result[hash] = mult
+                    new_element = true
+                end         
+            end 
+        end
+    until not new_element
     
     return result
 end

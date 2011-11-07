@@ -73,3 +73,14 @@ function print_cycles(p)
     print(cycle_string)    
 end
 
+
+function to_string(perm)
+    local str = ""
+
+    for i=1, #perm do
+        str = str .. perm[i]
+    end
+    
+    return str
+end
+
