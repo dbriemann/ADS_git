@@ -1,4 +1,3 @@
-
 module(..., package.seeall);
 
 function printf(s,...)

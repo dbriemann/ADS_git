@@ -1,4 +1,3 @@
-
 module(..., package.seeall);
 
 require "utils"
@@ -70,7 +69,7 @@ function print_cycles(p)
         cycle_string = "id" .. #p
     end
     
-    print(cycle_string)    
+    print(cycle_string)
 end
 
 
@@ -84,3 +83,45 @@ function to_string(perm)
     return str
 end
 
+function project(perm, graph)
+    local g = {}
+    
+    for _, edge in pairs(graph) do
+        local i = perm[edge[1] + 1]
+        local j = perm[edge[2] + 1]
+        local ij = {i, j}
+        table.sort(ij)
+        table.insert(g, ij)
+    end
+    
+    return g
+end
+
+function pproject(perm, edges)
+    local redges = {}    
+    local hit = {}
+    local stack = {}
+    
+    for _,e in pairs(edges) do
+        table.insert(stack, e)
+    end
+    
+    local count = 1
+    while #stack > 0 do
+        local e = table.remove(stack, #stack)
+        local r = project(perm, {e})[1]
+        local hash = r[1] .. r[2]
+        if not hit[hash] then
+            if not redges[count] then
+                redges[count] = {}
+            end            
+            table.insert(redges[count], r) 
+            hit[hash] = true
+            table.insert(stack, r)
+        else
+            count = count + 1
+        end
+    end
+  
+    return redges
+end
