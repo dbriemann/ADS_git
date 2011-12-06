@@ -43,7 +43,7 @@ for n = 3,8 do
         
         --print("PROD: " .. prod)
         
-        print ("TEMP: " ..  (math.pow(2, sum) / prod))
+        --print ("TEMP: " ..  (math.pow(2, sum) / prod))
         no_of_classes = no_of_classes + (math.pow(2, sum) / prod)
     end
     print("TOTAL NO OF CLASSES: " .. no_of_classes)

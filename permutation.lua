@@ -43,7 +43,7 @@ function signum(p)
     return math.pow(-1, exponent)
 end
 
-function print_cycles(p)
+function to_cycles(p)
     local visited = {}
     local cycle_string = ""
     
@@ -69,7 +69,11 @@ function print_cycles(p)
         cycle_string = "id" .. #p
     end
     
-    print(cycle_string)
+    return cycle_string
+end
+
+function print_cycles(p)
+    print(to_cycles(p))
 end
 
 

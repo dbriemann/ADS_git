@@ -22,7 +22,6 @@ for _, p in pairs(G) do
     end
 end
 
-
 print 'edges'
 local n = 4
 local f = gr.permute_set(n)
